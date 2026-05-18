@@ -130,8 +130,11 @@ public class XXE {
             logger.info(body);
 
             SAXReader reader = new SAXReader();
+            reader.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
+            reader.setFeature("http://xml.org/sax/features/external-general-entities", false);
+            reader.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
             // org.dom4j.Document document
-            reader.read(new InputSource(new StringReader(body))); // cause xxe
+            reader.read(new InputSource(new StringReader(body)));
 
         } catch (Exception e) {
             logger.error(e.toString());
