@@ -23,8 +23,9 @@ public class SpEL {
      */
     @RequestMapping("/spel/vuln1")
     public String spel_vuln1(String value) {
+        SimpleEvaluationContext context = SimpleEvaluationContext.forReadOnlyDataBinding().build();
         ExpressionParser parser = new SpelExpressionParser();
-        return parser.parseExpression(value).getValue().toString();
+        return parser.parseExpression(value).getValue(context).toString();
     }
 
     /**
